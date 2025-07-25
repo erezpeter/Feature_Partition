@@ -52,9 +52,9 @@ To partition the features, we propose solving an optimization problem that promo
 
 Consider a dataset of cells that undergoes two biolgoical process. Below we compare the embedding generated based on all genes, with the embeddings generated based on two gene partitiosn that were extracted using our approach. The color in each row encodes the cell stage in each of the corresponding biological processes.
 
-Common approach: Embed cells using all genes → embedding reflects mainly a single biological process
+**Common approach**: Embed cells using all genes → embedding reflects mainly a single biological process
 
-Our approach: First partition the genes and only then embed the cells based on each genes group → clean, interpretable embeddings that track each biological process
+**Our approach**: First partition the genes and only then embed the cells based on each genes group → clean, interpretable embeddings that track each biological process
 
 <figure> 
 <p align="center">
@@ -68,9 +68,9 @@ Our approach: First partition the genes and only then embed the cells based on e
 
 Consider a video of three rotating puppets (example in the image below). 
 
-Common approach: Embed images using all pixels → embedding reflects a "mixed" signal
+**Common approach**: Embed images using all pixels → embedding reflects a "mixed" signal
 
-Our approach: First partition the pixels and only then embed the images based on each pixels group → clean, interpretable embeddings that track each puppet's rotation
+**Our approach**: First partition the pixels and only then embed the images based on each pixels group → clean, interpretable embeddings that track each puppet's rotation
 
 <p align="center">
   <img src="Figures/Figurines.jpeg" width="950" />
