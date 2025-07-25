@@ -143,9 +143,10 @@ emb_FP = [ TSNE(n_components=3, perplexity=40, random_state=42).fit_transform(x[
 | `K`           | Number of partitions (e.g., 2 for trajectory vs cycle)  |
 | `perplexity`  | Similar to t-SNE: controls neighborhood size            |
 | `simulations` | Number of random restarts to avoid local minima         |
-| `is_parallel` | A boolean indicating whether to parralize the affinities comptutation|
-| `block_size`  | Controls parallel computation of affinities             |
-| `delta_steps` | Gradually removes regularization for sharper partitions |
+| `verbose`     | If `True`, the algorithm prints status messages throughout training                          |
+| `is_parallel` | If `True`, parallelizes the computation of affinities                                        |
+| `block_size`  | Controls the number of samples processed in each chunk during parallel computation of affinities |
+| `delta_steps` | Number of regularized optimization stages with decreasing regularization, ending in the original (non-regularized) problem |
 
 
 
