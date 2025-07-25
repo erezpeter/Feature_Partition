@@ -3,6 +3,8 @@
 
 🧑‍💻 **Erez Peterfreund, Ofir Lindenbaum, Yuval Kluger, Boris Landa**  
 
+⚠️ **Note (July 25, 2025):** This repository is a partial release. We are in the process of uploading the remaining notebooks and full experimental setup. Everything will be available by **August 1, 2025**.
+
 📄 Read the full paper:
 https://openreview.net/forum?id=6CwO5nVvku
 
@@ -71,7 +73,7 @@ Common approach: Embed images using all pixels → embedding reflects a "mixed" 
 Our approach: First partition the pixels and only then embed the images based on each pixels group → clean, interpretable embeddings that track each puppet's rotation
 
 <p align="center">
-  <img src="Figures/figurines.jpeg" width="950" />
+  <img src="Figures/Figurines.jpeg" width="950" />
 </p>
 <figcaption align="center"><b>Fig 3.</b> (Left) Illustration of the data-generating process: two cameras capture three rotating figurines, and their outputs are concatenated into a single image.
 (Middle) The three partitions extracted using FP.
