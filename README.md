@@ -125,7 +125,7 @@ model = FP(K=2, perplexity=30)
 # - the raw data matrix of shape (N samples × D features), or
 # - a low-rank SVD decomposition tuple (U, D, VT), where:
 #     U ∈ R^{N×S}, D ∈ R^S, VT ∈ R^{S \times D}, and S is the number of retained components
-model.fit(X, verbose=True, simulations=3)
+model.fit(X, verbose=True, simulations=10)
 
 # Step 3: Get feature partitions
 partitions = model.get_feature_partitions()
