@@ -146,7 +146,7 @@ emb_FP = [ TSNE(n_components=3, perplexity=40, random_state=42).fit_transform(x[
 | `verbose`     | If `True`, the algorithm prints status messages throughout training                          |
 | `is_parallel` | If `True`, parallelizes the computation of affinities                                        |
 | `block_size`  | Controls the number of samples processed in each chunk during parallel computation of affinities |
-| `delta_steps` | Number of regularized optimization stages with decreasing regularization, ending in the original (non-regularized) problem |
+| `delta_steps` | Number of intermediate optimization steps, each solving a regularized version of the objective with a progressively smaller regularization coefficient |
 
 
 
