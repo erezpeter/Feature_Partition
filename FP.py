@@ -549,12 +549,6 @@ class FP:
     #       objective value required to continue optimizing with the current delta. If not met, 
     #       moves to the next (smaller) delta.
     #
-    #   stop_percent_converged : float or None (optional)
-    #       If set, defines the threshold percentage of features that must be nearly 
-    #       fully assigned to a single partition (i.e., max weight > 0.999). 
-    #       Once this threshold is exceeded, the algorithm proceeds directly to the 
-    #       final step with delta = 0 (i.e., solving the non-regularized problem).
-    #       Assign None to disable this convergence-based shortcut.
     #
     #### Parallelization:
     #
@@ -591,7 +585,6 @@ class FP:
             self.delta_list= None
 
         self.random_seed= random_seed
-        #self.stop_percent_converged= stop_percent_converged
         self.perc_score_improve_thresh= perc_score_improve_thresh
 
         self.is_parallel= is_parallel
