@@ -3,7 +3,7 @@
 
 🧑‍💻 **Erez Peterfreund, Ofir Lindenbaum, Yuval Kluger, Boris Landa**  
 
-> ⚠️ **Note (August 1, 2025):** This repository is a partial release. We are in the process of uploading the remaining notebooks and full experimental setup. Everything will be available by **August 8, 2025**.
+> ⚠️ **Note (July 25, 2025):** This repository is a partial release. We are in the process of uploading the remaining notebooks and full experimental setup. Everything will be available by **August 1, 2025**.
 
 📄 Read the full paper:
 https://openreview.net/forum?id=6CwO5nVvku
@@ -29,7 +29,7 @@ This allows for:
 While our primary application is embedding, the learned feature partitions can also support other downstream tasks, such as: including clustering, trajectory inference, or regression, applied independently to the samples based on each partition.
 
 <figure><p align="center">
- <img src="Figures/Intution.png" width="950"/>  </p>
+ <img src="Figures/Intution.png" width="650"/>  </p>
 <figcaption align="center"><b>Fig 1.</b> (Left) The observed data and standard embedding methods (UMAP, t-SNE, Laplacian Eigenmaps),  which mix all latent variables into a single representation.
 (Right) Our approach first partitions the features to construct multiple views of the samples, and then computes a separate embedding for each view.
  </figcaption> </figure>
@@ -50,7 +50,7 @@ To partition the features, we propose solving an optimization problem that promo
 
 ### 🧬 Biological Data
 
-Consider a dataset of cells that undergoes two biolgoical process. Below we compare the embedding generated based on all genes, with the embeddings generated based on two gene partitiosn that were extracted using our approach. The color in each row encodes the cell stage in each of the corresponding biological processes.
+Consider a dataset of cells governed by two distinct biological processes. Below we compare the embedding generated based on all genes, with the embeddings generated based on two gene partitions that were extracted using our approach. The color in each row encodes the cell stage in each of the corresponding biological processes.
 
 ** Common approach **: Embed cells using all genes → embedding reflects mainly a single biological process
 
@@ -61,12 +61,12 @@ Consider a dataset of cells that undergoes two biolgoical process. Below we comp
   <img src="Figures/Biological.PNG" width="950" />
 </p>
 <figcaption align="center"><b>Fig 2.</b> (Left) The two biological processes governing the cells, with each stage color-coded.
-(Right) t-SNE embeddings of the cells based on all genes and on the two gene partitions identified by FP. Colors in each row correspond to cell stages within the respective biological process shown on the left.
+(Right) t-SNE embeddings of the cells based on all genes and on the two gene partitions identified by FP. In each row, colors correspond to the stages of the biological process shown on the left.
  </figcaption>  </figure>
 
 ### 🖼️ Image Data
 
-Consider a video of three rotating puppets (example in the image below). 
+Consider a video of three rotating puppets (as shown in the image below). 
 
 ** Common approach **: Embed images using all pixels → embedding reflects a "mixed" signal
 
@@ -76,7 +76,7 @@ Consider a video of three rotating puppets (example in the image below).
   <img src="Figures/Figurines.jpeg" width="950" />
 </p>
 <figcaption align="center"><b>Fig 3.</b> (Left) Illustration of the data-generating process: two cameras capture three rotating figurines, and their outputs are concatenated into a single image.
-(Middle) The three partitions extracted using FP.
+(Middle) The three pixel partitions identified using FP.
 (Right) Embeddings computed using all pixels and those computed separately from the three pixel partitions identified by FP. In each column, the embedding is colored according to the azimuth of a different figurine.
  </figcaption>  </figure>
 
@@ -91,6 +91,21 @@ Consider a video of three rotating puppets (example in the image below).
 git clone https://github.com/erezpeter/Feature_Partition.git
 python setup.py build_ext --inplace
 ````
+
+### 💻 Environment
+This code was developed and tested with the following setup:
+
+Python: 3.10.17
+
+NumPy: 2.2.5
+
+scikit-learn: 1.5.2
+
+SciPy: 1.15.3
+
+Joblib: 1.4.0
+
+Matplotlib: 3.10.3
 
 
 ---
@@ -125,7 +140,7 @@ model = FP(K=2, perplexity=30)
 # - the raw data matrix of shape (N samples × D features), or
 # - a low-rank SVD decomposition tuple (U, D, VT), where:
 #     U ∈ R^{N×S}, D ∈ R^S, VT ∈ R^{S \times D}, and S is the number of retained components
-model.fit(X, verbose=True, simulations=10)
+model.fit(X, verbose=True, simulations=40)
 
 # Step 3: Get feature partitions
 partitions = model.get_feature_partitions()
@@ -150,6 +165,22 @@ emb_FP = [ TSNE(n_components=3, perplexity=40, random_state=42).fit_transform(x[
 
 
 
+---
+## Choosing the number of partitions (K)
+
+Estimating the number of feature partitions in a dataset is a nontrivial task. We propose to estimate this number by running our algorithm with varying values of K and observing the resulting optimization scores.
+
+We demonstrate this approach on the image dataset described earlier, which is governed by three distinct latent structures corresponding to the three rotating figurines. The score decreases rapidly as K increases up to the true number of partitions (K=3), after which the improvement becomes much more gradual.
+
+This behavior is similar to the “elbow” effect commonly used to estimate K in K-means clustering or to determine the intrinsic dimensionality in PCA. We suggest using this point of diminishing returns as a practical indicator for selecting the appropriate number of partitions.
+
+
+
+<p align="center">
+  <img src="Figures/chooseK.PNG" width="450" />
+</p>
+<figcaption align="center"><b>Fig 4.</b> The score achieved by our algortihm for each value of K (number of partitions).
+ </figcaption>  </figure>
 
 
 ---
