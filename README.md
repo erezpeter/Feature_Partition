@@ -3,8 +3,6 @@
 
 🧑‍💻 **Erez Peterfreund, Ofir Lindenbaum, Yuval Kluger, Boris Landa**  
 
-> ⚠️ **Note (July 25, 2025):** This repository is a partial release. We are in the process of uploading the remaining notebooks and full experimental setup. Everything will be available by **August 1, 2025**.
-
 📄 Read the full paper:
 https://openreview.net/forum?id=6CwO5nVvku
 
